@@ -1,7 +1,5 @@
 import { Produto as ProdutoType } from '../App'
 import Produto from '../components/Produto'
-import { useGetProdutosQuery } from '../services/api'
-
 import * as S from './styles'
 
 type Props = {
@@ -19,23 +17,20 @@ const ProdutosComponent = ({
 
     return IdsDosFavoritos.includes(produtoId)
   }
-
-  const { data: produtos } = useGetProdutosQuery()
-
-  return (
-    <>
-      <S.Produtos>
-        {produtos?.map((produto) => (
-          <Produto
-            estaNosFavoritos={produtoEstaNosFavoritos(produto)}
-            key={produto.id}
-            produto={produto}
-            favoritar={favoritar}
-          />
-        ))}
-      </S.Produtos>
-    </>
-  )
-}
+    return (
+      <>
+        <S.Produtos>
+          {produtos?.map((produto) => (
+            <Produto
+              estaNosFavoritos={produtoEstaNosFavoritos(produto)}
+              key={produto.id}
+              produto={produto}
+              favoritar={favoritar}
+            />
+          ))}
+        </S.Produtos>
+      </>
+    )
+ }
 
 export default ProdutosComponent
